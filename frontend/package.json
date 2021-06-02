@@ -1,0 +1,36 @@
+{
+  "name": "frontend",
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "deploy": "firebase deploy"
+  },
+  "dependencies": {
+    "@apollo/client": "^3.3.19",
+    "@vitejs/plugin-vue": "^1.2.2",
+    "@vue/apollo-composable": "^4.0.0-alpha.12",
+    "@vue/composition-api": "^1.0.0-beta.1",
+    "apollo-boost": "^0.4.9",
+    "apollo-cache-inmemory": "^1.6.6",
+    "apollo-client": "^2.6.10",
+    "apollo-link": "^1.2.14",
+    "apollo-link-http": "^1.5.17",
+    "axios": "^0.21.1",
+    "core-js": "^3.6.5",
+    "graphql": "^15.5.0",
+    "graphql-tag": "^2.12.4",
+    "marked": "^2.0.6",
+    "react": "^16.13.1",
+    "vue": "^3.1.0-beta.6",
+    "vue-apollo": "^3.0.7",
+    "vue-meta": "^2.4.0",
+    "vue-router": "^4.0.8",
+    "vue-touch": "^2.0.0-beta.4",
+    "vuex": "^4.0.1"
+  },
+  "devDependencies": {
+    "@vue/compiler-sfc": "^3.0.4",
+    "vite": "^2.3.4"
+  }
+}
