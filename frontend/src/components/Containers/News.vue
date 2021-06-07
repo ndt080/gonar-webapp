@@ -1,24 +1,24 @@
 <template>
   <section class="container container-news">
     <div class="wrapper">
-      <Card v-for="(article, i) of articles"
-            v-bind:key="article?.id"
-            v-bind:article="article"
+      <ArticleCard v-for="(article, i) of articles"
+                   v-bind:key="article?.id"
+                   v-bind:article="article"
       />
     </div>
   </section>
 </template>
 
 <script>
-import Card from "../Cards/Card.vue";
-import { useQuery, useResult } from '@vue/apollo-composable'
+import ArticleCard from "../Cards/ArticleCard.vue";
+import {useQuery, useResult} from '@vue/apollo-composable'
 import gql from "graphql-tag";
 
 export default {
   name: "News",
-  components: {Card},
+  components: {ArticleCard},
   computed: {
-    articles(){
+    articles() {
       return this.$store.getters.articles
     }
   }
@@ -46,9 +46,10 @@ export default {
 </script>
 
 <style scoped>
-.container-news{
+.container-news {
   margin-top: -40px;
 }
+
 .container-news .wrapper {
   display: flex;
   justify-content: space-between;
@@ -58,31 +59,38 @@ export default {
   padding: 40px 0 30px 30px;
   max-width: 90vw;
 }
+
 .wrapper::-webkit-scrollbar-track {
-  background-color:#ecedee;
+  background-color: #ecedee;
 }
+
 .wrapper::-webkit-scrollbar-thumb {
   -webkit-border-radius: 10px;
   border-radius: 10px;
-  background-color:#6dc0c8;
+  background-color: #6dc0c8;
 }
-.wrapper::-webkit-scrollbar-thumb:hover{
-  background-color:#56999f;
+
+.wrapper::-webkit-scrollbar-thumb:hover {
+  background-color: #56999f;
 }
-.wrapper::-webkit-scrollbar{
+
+.wrapper::-webkit-scrollbar {
   width: 2px;
   height: 8px;
 }
+
 @media (max-width: 968px) {
   .container-news .wrapper {
     max-width: 95vw;
   }
 }
+
 @media (max-width: 540px) {
   .container-news .wrapper {
     max-width: 86vw;
   }
 }
+
 @media (max-width: 380px) {
   .container-news .wrapper {
     max-width: 78vw;

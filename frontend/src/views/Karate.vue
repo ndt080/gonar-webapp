@@ -3,7 +3,7 @@
     <div class="wrapper shadow header"
          :style="{
             'background': `linear-gradient(90deg, rgba(255, 160, 51, 0.9), rgba(228, 35, 28, 0.6)),
-                          url('${`http://localhost:1337${karate?.PreviewImage?.url}`}') 0 30% no-repeat`,
+                          url('${`${url}${karate?.PreviewImage?.url}`}') 0 30% no-repeat`,
             'background-size': 'cover',
             '-webkit-background-size': 'cover',
             '-moz-background-size': 'cover',
@@ -25,8 +25,7 @@ export default {
   name: "Karate",
   data() {
     return {
-      input: '![http://risovach.ru/upload/2013/05/mem/tvoe-vyrazhenie-lica_18799993_orig_.jpeg]' +
-          '(http://risovach.ru/upload/2013/05/mem/tvoe-vyrazhenie-lica_18799993_orig_.jpeg)'
+      url: import.meta.env.VITE_APP_STRAPI_API_URL
     }
   },
   computed: {
@@ -35,7 +34,7 @@ export default {
     },
     compiledMarkdown() {
       let input = this.karate?.Content || 'text'
-      return marked(input, {baseUrl: 'http://localhost:1337', sanitize: false});
+      return marked(input, {baseUrl: this.url, sanitize: false});
     }
   }
 }

@@ -9,7 +9,7 @@ import { DefaultApolloClient } from '@vue/apollo-composable'
 import './assets/css/index.css'
 
 const defaultClient = new ApolloClient({
-    uri: 'http://localhost:1337/graphql',
+    uri: import.meta.env.VITE_APP_STRAPI_API_URL,
     cache: new InMemoryCache()
 })
 

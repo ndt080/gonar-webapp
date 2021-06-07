@@ -1,10 +1,10 @@
 import Vuex from 'vuex'
-import {useQuery, useResult} from "@vue/apollo-composable";
-import gql from "graphql-tag";
+import axios from "axios";
 
 export default new Vuex.Store({
     state: {
         pages: [],
+        homePage: {},
         articles: [],
         loader: true
     },
@@ -15,51 +15,42 @@ export default new Vuex.Store({
         setPagesData(state, pages) {
             state.pages = pages
         },
-        setLoaderStatus(state, status){
+        setHomePageData(state, pages) {
+            state.homePage = pages
+        },
+        setLoaderStatus(state, status) {
             state.loader = status
         }
     },
     actions: {
-        async fetchPagesData ({ commit }) {
-            try{
-                let res = await fetch(`http://localhost:1337/pages`)
-                let value = await res.json()
-                commit('setPagesData', value)
+        async fetchPagesData({commit}) {
+            try {
+                await axios.get(`${import.meta.env.VITE_APP_STRAPI_API_URL}/home`)
+                    .then(resp => commit('setHomePageData', resp.data))
+
+                await axios.get(`${import.meta.env.VITE_APP_STRAPI_API_URL}/pages`)
+                    .then(resp => commit('setPagesData', resp.data))
+
             } catch (e) {
                 console.log(e)
             }
         },
-        async fetchArticlesData ({ commit }) {
-            try{
-                let res = await fetch(`http://localhost:1337/articles`)
-                let value = await res.json()
-                // const { result } = useQuery(gql`
-                //     query Articles {
-                //         articles {
-                //             id
-                //             Title
-                //             Description
-                //             Content
-                //             published_at
-                //             Image {
-                //                 url
-                //             }
-                //         }
-                //     }
-                // `)
-                // const value = useResult(result)
-                // console.log('value: ', value)
-                commit('setArticlesData', value)
+
+        async fetchArticlesData({commit}) {
+            try {
+                await axios.get(`${import.meta.env.VITE_APP_STRAPI_API_URL}/articles`)
+                    .then(resp => commit('setArticlesData', resp.data))
+
             } catch (e) {
                 console.log(e)
             }
         },
     },
-    getters:{
+    getters: {
         articles: state => state.articles,
         pages: state => state.pages,
+        homePage: state => state.homePage,
         loader: state => state.loader
     },
-    modules: {
-    }
+    modules: {}
 })

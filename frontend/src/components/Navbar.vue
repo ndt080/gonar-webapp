@@ -1,6 +1,6 @@
 <template>
   <nav>
-    <img alt="logo" class="logo" src="./../assets/img/logo-en.png"/>
+    <img alt="logo" class="logo" :src="getImgUrl()"/>
     <label for="btn-menu" class="icon-menu">
       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list"
            viewBox="0 0 16 16">
@@ -48,11 +48,20 @@
 <script>
 export default {
   name: "Navbar",
+  data(){
+    return {
+      url: import.meta.env.VITE_APP_STRAPI_API_URL
+    }
+  },
   methods: {
     async scrollFix(hashbang)
     {
       await this.$router.push('/')
       location.href = hashbang;
+    },
+    getImgUrl(){
+      let img = this.$store.getters.homePage['Logo']?.['formats']?.['small']?.['url']
+      return `${this.url}${img}`
     }
   }
 }

@@ -16,7 +16,12 @@
 
 <script>
 export default {
-  name: "Card",
+  name: "ArticleCard",
+  data(){
+    return {
+      url: import.meta.env.VITE_APP_STRAPI_API_URL
+    }
+  },
   props: {
     article: {
       type: Object,
@@ -39,7 +44,7 @@ export default {
     },
     getImgUrl(){
       let filename = this.article?.Image?.url
-      return `http://localhost:1337${filename}`
+      return `${this.url}${filename}`
     }
 
   }

@@ -6,7 +6,7 @@
         <h1 class="article-title">{{ article?.Title.toUpperCase() }}</h1>
         <div class="article-preview"
              :style="{
-                'background': `url('${`http://localhost:1337${article?.Image?.url}`}') center no-repeat`,
+                'background': `url('${`${url}${article?.Image?.url}`}') center no-repeat`,
                 'background-size': 'cover',
                 '-webkit-background-size': 'cover',
                 '-moz-background-size': 'cover',
@@ -26,7 +26,8 @@ export default {
   name: "Article",
   data() {
     return {
-      id: this.$route.params.id
+      id: this.$route.params.id,
+      url: import.meta.env.VITE_APP_STRAPI_API_URL
     }
   },
   computed: {
@@ -35,7 +36,7 @@ export default {
     },
     compiledMarkdown() {
       let input = this.article?.Content || 'text'
-      return marked(input, {baseUrl: 'http://localhost:1337', sanitize: false});
+      return marked(input, {baseUrl: this.url, sanitize: false});
     }
   },
   methods: {
