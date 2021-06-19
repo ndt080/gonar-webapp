@@ -1,6 +1,8 @@
 <template>
-  <nav>
-    <img alt="logo" class="logo" :src="getImgUrl()"/>
+  <nav class="animate__animated animate__zoomIn animate__fast">
+    <router-link to="/">
+      <img alt="logo" class="logo" src="../assets/img/logo-en.png"/>
+    </router-link>
     <label for="btn-menu" class="icon-menu">
       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list"
            viewBox="0 0 16 16">
@@ -14,15 +16,15 @@
       <li class="nav-item">
         <router-link to="/">Главная</router-link>
       </li>
-<!--  <li class="nav-item dropdown">
-        <label for="btn-dropdown-1" class="show">Каратэ</label>
-        <a href="#">Каратэ</a>
-        <input type="checkbox" id="btn-dropdown-1">
-        <ul class="dropdown-content">
-          <li><a href="#">Мероприятия и экзамены</a></li>
-          <li><router-link to="/schedule">Расписание и цены</router-link></li>
-        </ul>
-      </li>-->
+      <!--  <li class="nav-item dropdown">
+              <label for="btn-dropdown-1" class="show">Каратэ</label>
+              <a href="#">Каратэ</a>
+              <input type="checkbox" id="btn-dropdown-1">
+              <ul class="dropdown-content">
+                <li><a href="#">Мероприятия и экзамены</a></li>
+                <li><router-link to="/schedule">Расписание и цены</router-link></li>
+              </ul>
+            </li>-->
       <li class="nav-item">
         <router-link to="/karate">Каратэ</router-link>
       </li>
@@ -46,24 +48,37 @@
 </template>
 
 <script>
+import {useMeta} from "vue-meta";
+
 export default {
   name: "Navbar",
-  data(){
+  mounted() {
+    useMeta({
+      title: this.meta.Title,
+      htmlAttrs: {lang: 'ru', amp: true},
+      description: this.meta.Description,
+    })
+  },
+  data() {
     return {
       url: import.meta.env.VITE_APP_STRAPI_API_URL
     }
   },
+  computed: {
+    meta() {
+      let obj = this.$store.getters.homePage['Body']?.find(x => x['__component'] === "blocks.meta-data")
+      return {
+        Title: obj?.['Title'] || 'none',
+        Description: obj?.['Description'] || 'none',
+      }
+    }
+  },
   methods: {
-    async scrollFix(hashbang)
-    {
+    async scrollFix(hashbang) {
       await this.$router.push('/')
       location.href = hashbang;
-    },
-    getImgUrl(){
-      let img = this.$store.getters.homePage['Logo']?.['formats']?.['small']?.['url']
-      return `${this.url}${img}`
     }
-  }
+  },
 }
 </script>
 
@@ -140,6 +155,7 @@ nav .logo {
 
 .show, input, .icon-menu {
   display: none;
+
 }
 
 @media (max-width: 968px) {
@@ -170,6 +186,7 @@ nav .logo {
 
   .show {
     display: block;
+    visibility: visible;
   }
 
   .show:hover {
@@ -177,15 +194,24 @@ nav .logo {
   }
 
   .show + a, ul, #menu {
-    display: none;
+    /*display: none;*/
+    max-height: 0;
+    transform: scaleY(0);
+    transform-origin: top;
+    visibility: hidden;
+    opacity: 0;
+    transition: transform 0s linear 0.3s, max-height 0s linear 0.3s, opacity 0.6s, visibility 0s linear 0.6s;
   }
 
   [id^=btn-dropdown-1]:checked + ul,
   [id^=btn-menu]:checked + ul,
   [id^=btn-menu]:checked + #menu {
-    display: block;
-    box-shadow: none;
-    background: none;
+    /*display: block;*/
+    opacity: 1;
+    max-height: 100%;
+    transform: scaleY(1);
+    visibility: visible;
+    transition-delay: 0s;
   }
 
   .icon-menu {

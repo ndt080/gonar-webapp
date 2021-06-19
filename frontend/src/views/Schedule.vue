@@ -1,6 +1,6 @@
 <template>
   <section class="container container-schedule">
-    <div class="wrapper shadow header"
+    <div class="wrapper shadow header animate__animated animate__bounceIn animate__slow"
          :style="{
             'background': `linear-gradient(90deg, rgba(255, 160, 51, 0.9), rgba(228, 35, 28, 0.6)),
                           url('${`${url}${schedule?.PreviewImage?.url}`}') center no-repeat`,
@@ -12,7 +12,7 @@
       <h1 class="header-title">{{ schedule?.Title }}</h1>
       <p class="header-subtitle">{{ schedule?.HeaderText }}</p>
     </div>
-    <div class="wrapper body content">
+    <div class="wrapper body content animate__animated animate__zoomInUp animate__slow">
       <div v-html="compiledMarkdown"></div>
     </div>
   </section>
@@ -23,6 +23,22 @@ import marked from "marked";
 
 export default {
   name: "Schedule",
+  mounted() {
+    let tables = document.getElementsByTagName('table');
+    let length = tables.length;
+
+    for (let t = 0; t < length; t++) {
+      let tHead = tables[t].tHead.innerText.split('\t')
+      let rw = tables[t]?.rows
+      console.log(tables)
+
+      for (let j = 0; j < rw?.length; j++) {
+        for (let i = 0; i < rw[j].cells.length; i++) {
+          rw[j].cells[i].setAttribute('data-label', tHead[i]);
+        }
+      }
+    }
+  },
   data() {
     return {
       url: import.meta.env.VITE_APP_STRAPI_API_URL

@@ -3,6 +3,8 @@
     <div class="wrapper">
       <ArticleCard v-for="(article, i) of articles"
                    v-bind:key="article?.id"
+                   v-bind:i="i"
+                   v-bind:length="articles.length"
                    v-bind:article="article"
       />
     </div>
@@ -11,8 +13,6 @@
 
 <script>
 import ArticleCard from "../Cards/ArticleCard.vue";
-import {useQuery, useResult} from '@vue/apollo-composable'
-import gql from "graphql-tag";
 
 export default {
   name: "News",
@@ -22,26 +22,6 @@ export default {
       return this.$store.getters.articles
     }
   }
-  // setup(){
-  //   const { result } = useQuery(gql`
-  //     query Articles {
-  //       articles {
-  //         id
-  //         Title
-  //         Description
-  //         Content
-  //         published_at
-  //         Image {
-  //           url
-  //         }
-  //       }
-  //     }
-  //   `)
-  //
-  //   const articles = useResult(result, null, data => data.articles)
-  //   // console.log(articles)
-  //   return { articles }
-  // }
 }
 </script>
 

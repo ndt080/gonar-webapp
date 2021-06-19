@@ -1,4 +1,4 @@
-import Vuex from 'vuex'
+import Vuex from 'vuex';
 import axios from "axios";
 
 export default new Vuex.Store({

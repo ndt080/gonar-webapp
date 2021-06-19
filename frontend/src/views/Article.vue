@@ -1,7 +1,7 @@
 <template>
   <section class="container container-article">
     <article class="wrapper content">
-      <div class="article-header">
+      <div class="article-header  animate__animated animate__bounceIn animate__slow">
         <p class="article-date">{{ convertDate(article?.published_at) }}</p>
         <h1 class="article-title">{{ article?.Title.toUpperCase() }}</h1>
         <div class="article-preview"
@@ -14,7 +14,7 @@
               }">
         </div>
       </div>
-      <div class="article-body" v-html="compiledMarkdown"></div>
+      <div class="article-body animate__animated animate__zoomInUp animate__slow" v-html="compiledMarkdown"></div>
     </article>
   </section>
 </template>
@@ -36,7 +36,7 @@ export default {
     },
     compiledMarkdown() {
       let input = this.article?.Content || 'text'
-      return marked(input, {baseUrl: this.url, sanitize: false});
+      return marked(input, {baseUrl: this.url, sanitize: false, smartLists: true});
     }
   },
   methods: {
@@ -58,7 +58,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 .container-article .wrapper {
   display: flex;
   padding: 50px 0;
@@ -74,17 +74,19 @@ article .article-title {
   font-weight: 700;
   padding: 15px 0;
 }
+
 article .article-preview {
   width: 100%;
-  height: 350px;
+  height: 500px;
   background: black;
   border-radius: 15px;
   margin-bottom: 40px;
 }
-article .article-body{
+
+article .article-body {
   text-align: justify;
-  word-wrap: break-word;
   text-indent: 50px;
+  word-wrap: break-word;
 }
 
 @media (max-width: 968px) {

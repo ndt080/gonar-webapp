@@ -1,18 +1,18 @@
 <template>
   <section class="container container-about">
-    <div class="wrapper shadow header"
+    <div class="wrapper shadow header  animate__animated animate__bounceIn animate__slow"
          :style="{
             'background': `linear-gradient(90deg, rgba(255, 160, 51, 0.9), rgba(228, 35, 28, 0.6)),
-                          url('${`${url}${about?.PreviewImage?.url}`}') center no-repeat`,
+                          url('${`${url}${about?.['PreviewImage']?.url}`}') center no-repeat`,
             'background-size': 'cover',
             '-webkit-background-size': 'cover',
             '-moz-background-size': 'cover',
             '-o-background-size': 'cover'
           }">
-      <h1 class="header-title">{{ about?.Title }}</h1>
-      <p class="header-subtitle">{{ about?.HeaderText }}</p>
+      <h1 class="header-title">{{ about?.['Title'] }}</h1>
+      <p class="header-subtitle">{{ about?.['HeaderText'] }}</p>
     </div>
-    <div class="wrapper body content">
+    <div class="wrapper body content animate__animated animate__zoomInUp animate__slow">
       <div v-html="compiledMarkdown"></div>
     </div>
   </section>

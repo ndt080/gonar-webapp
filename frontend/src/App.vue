@@ -1,9 +1,10 @@
-<template >
+<template>
+  <metainfo/>
   <Navbar v-if="!loader"/>
   <router-view v-if="!loader"/>
   <Footer v-if="!loader"/>
   <div class="loaderBox" v-if="loader">
-    <Loader />
+    <Loader/>
   </div>
 </template>
 
@@ -18,27 +19,26 @@ export default {
     Loader,
     Navbar, Footer
   },
-  mounted() {
-    this.$store.commit('setLoaderStatus', true)
-    try{
-      this.$store.dispatch('fetchPagesData')
-      this.$store.dispatch('fetchArticlesData')
-      this.$store.commit('setLoaderStatus', false)
-    }catch (e){
+  async mounted() {
+    try {
+      await this.$store.dispatch('fetchPagesData')
+      await this.$store.dispatch('fetchArticlesData')
+
+      this.loader = false
+    } catch (e) {
       console.log(e)
     }
-
   },
-  computed: {
-    loader(){
-      return this.$store.getters.loader
+  data() {
+    return {
+      loader: true
     }
-  }
+  },
 }
 </script>
 
 <style scoped>
-.loaderBox{
+.loaderBox {
   align-items: center;
   display: flex;
   justify-content: center;

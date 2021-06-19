@@ -1,6 +1,6 @@
 <template>
   <section class="container container-karate">
-    <div class="wrapper shadow header"
+    <div class="wrapper shadow header  animate__animated animate__bounceIn animate__slow"
          :style="{
             'background': `linear-gradient(90deg, rgba(255, 160, 51, 0.9), rgba(228, 35, 28, 0.6)),
                           url('${`${url}${karate?.PreviewImage?.url}`}') 0 30% no-repeat`,
@@ -12,7 +12,7 @@
       <h1 class="header-title">{{ karate?.Title }}</h1>
       <p class="header-subtitle">{{ karate?.HeaderText }}</p>
     </div>
-    <div class="wrapper body content">
+    <div class="wrapper body content animate__animated animate__zoomInUp animate__slow">
       <div v-html="compiledMarkdown"></div>
     </div>
   </section>
@@ -34,8 +34,8 @@ export default {
     },
     compiledMarkdown() {
       let input = this.karate?.Content || 'text'
-      return marked(input, {baseUrl: this.url, sanitize: false});
-    }
+      return marked(input, {baseUrl: this.url, sanitize: false, smartLists: false});
+    },
   }
 }
 </script>

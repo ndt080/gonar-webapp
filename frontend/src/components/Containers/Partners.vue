@@ -4,8 +4,10 @@
       <div class="box" v-for="item in partners"
            v-bind:key="item['id']"
       >
-        <img class="box-img" :src="getImgUrl(item?.['Card']?.['Logo']?.['url'])" alt="partner"/>
-        <h3 class="box-title">{{item?.['Card']?.['Title']}}</h3>
+        <a :href="item?.['Card']?.['Link'] || '#'" target="_blank">
+          <img class="box-img" :src="getImgUrl(item?.['Card']?.['Logo']?.['url'])" alt="partner"/>
+          <h3 class="box-title">{{item?.['Card']?.['Title']}}</h3>
+        </a>
       </div>
     </div>
   </div>
@@ -45,6 +47,10 @@ export default {
   text-align: center;
   max-width: 30%;
   margin-right: 15px;
+}
+.container-partners .wrapper .box a {
+  text-decoration: none;
+  color: #0a0a0a;
 }
 
 .container-partners .wrapper .box-img {

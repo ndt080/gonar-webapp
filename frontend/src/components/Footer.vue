@@ -26,7 +26,7 @@
         </h1>
       </div>
       <div class="footer-column footer-column-common">
-        <img :src="data?.Image" alt="logo" class="logo"/>
+        <img src="../assets/img/logo-en.png" alt="logo" class="logo"/>
       </div>
       <div class="footer-column footer-column-about">
         <p class="footer-column-header">{{ data?.Title }}</p>
@@ -61,11 +61,9 @@ export default {
   computed: {
     data() {
       let obj = this.$store.getters.homePage['Body']?.find(x => x['__component'] === "blocks.footer")
-      let img = this.$store.getters.homePage['Logo']?.['formats']?.['small']?.['url']
       return {
         Title: obj?.['Title'] || 'none',
         Content: obj?.['Content'] || 'none',
-        Image: `${this.url}${img}`,
         Copyright: obj?.['Copyright'] || 'none'
       }
     }

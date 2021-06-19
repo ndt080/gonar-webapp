@@ -1,16 +1,8 @@
 <template>
-  <section class="container container-header">
-    <div class="wrapper shadow"
-         :style="{
-            'background': `linear-gradient(90deg, rgba(255, 160, 51, 0.9), rgba(228, 35, 28, 0.6)),
-                          url('${data?.Image}') 0 30% no-repeat`,
-            'background-size': 'cover',
-            '-webkit-background-size': 'cover',
-            '-moz-background-size': 'cover',
-            '-o-background-size': 'cover'
-          }">
-      <h1>{{ data?.Title }}</h1>
-      <p>{{ data?.Content }}</p>
+  <section class="container container-header animate__animated animate__bounceIn animate__slow">
+    <div class="wrapper shadow">
+      <h1 class="header-title">{{ data?.Title }}</h1>
+      <p class="header-body">{{ data?.Content }}</p>
     </div>
   </section>
 </template>
@@ -45,20 +37,26 @@ export default {
   border-radius: 20px;
   min-height: 29.5rem;
   padding: 50px;
-
-  /*background: linear-gradient(90deg, rgba(255, 160, 51, 0.9), rgba(228, 35, 28, 0.6)),*/
-  /*url("./../../assets/img/header3000x2250_3.jpg") 0 30% no-repeat;*/
-  /*background-size: cover;*/
-  /*-webkit-background-size: cover;*/
-  /*-moz-background-size: cover;*/
-  /*-o-background-size: cover;*/
+  background: linear-gradient(90deg, rgba(255, 160, 51, 0.9), rgba(228, 35, 28, 0.6)),
+              url("./../../assets/img/header.gif") no-repeat;
+  background-position: 0 30%;
+  background-size: cover;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
 
   font-size: 1.4em;
   line-height: 1.1;
 }
 
+.container-header .header-title {
+  font-size: 1.6em;
+  padding-bottom: 10px;
+}
+
 @media (max-width: 968px) {
   .container-header .wrapper {
+    background-position: center center;
     padding: 20px;
     font-size: 1.2em;
   }

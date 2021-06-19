@@ -8,7 +8,7 @@
     <Lightbox :cells="4" :items="getImages"/>
   </div>
   <div class="section-header">НАШИ ПАРТНЁРЫ</div>
-  <Partners />
+  <Partners/>
   <div class="section-header" id="contacts">КОНТАКТЫ</div>
   <Contacts/>
 </template>
@@ -24,6 +24,9 @@ import Partners from "../components/Containers/Partners.vue";
 
 export default {
   name: "Home",
+  metaInfo: {
+    title: 'Default Title',
+  },
   data() {
     return {
       url: import.meta.env.VITE_APP_STRAPI_API_URL
@@ -36,7 +39,7 @@ export default {
       for (let i in data) {
         images.push(this.url + data[i]?.url)
       }
-      console.log(images)
+      // console.log(images)
       return images
     }
   },
