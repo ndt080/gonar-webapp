@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=Bitter:wght@100;300;400;500;700;800&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    background: white;
+}
+
+#app {
+    font-family: 'Bitter', serif;
+    font-size: 18px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    min-height: 100vh;
+}
+
+.shadow {
+    box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.15);
+}
+
+.wrapper.content img {
+    display: block;
+    margin: 0 auto;
+    object-fit: cover;
+    max-width: 100%;
+    height: 300px;
+    padding: 25px 0;
+}
+
+.wrapper.content li {
+    text-indent: 0 !important;
+    margin-left: 35px;
+}
+
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    text-indent: 0 !important;
+}
+
+table tr {
+    background-color: #f8f8f8;
+}
+
+table th, table td {
+    text-align: left;
+    padding: 8px;
+    border: 1px solid #ddd;
+}
+
+@media screen and (max-width: 600px) {
+    table {
+        border: 0;
+    }
+
+    table thead {
+        border: none;
+        clip: rect(0 0 0 0);
+        height: 1px;
+        margin: -1px;
+        overflow: hidden;
+        padding: 0;
+        position: absolute;
+        width: 1px;
+    }
+
+    table tr {
+        border-bottom: 1px solid #ddd;
+        display: block;
+        margin-bottom: 30px;
+    }
+
+    table td {
+        display: block;
+        text-align: right;
+        min-height: 20px;
+    }
+
+    table td::before {
+        content: attr(data-label);
+        float: left;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+    table td:last-child {
+        border-bottom: 0;
+    }
+}
