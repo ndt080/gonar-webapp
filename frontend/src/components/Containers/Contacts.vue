@@ -82,5 +82,10 @@ export default {
     width: 100%;
   }
 }
+@media (max-width: 480px) {
+  .contacts {
+    margin-top: 30px;
+  }
+}
 
 </style>

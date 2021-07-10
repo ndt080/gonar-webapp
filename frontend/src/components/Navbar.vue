@@ -1,5 +1,6 @@
 <template>
-  <nav class="animate__animated animate__zoomIn animate__fast">
+  <ReloadPrompt />
+  <nav class="main-nav">
     <router-link to="/">
       <img alt="logo" class="logo" src="../assets/img/logo-en.png"/>
     </router-link>
@@ -49,10 +50,13 @@
 
 <script>
 import {useMeta} from "vue-meta";
+import ReloadPrompt from "./ReloadPrompt.vue";
 
 export default {
   name: "Navbar",
+  components: {ReloadPrompt},
   mounted() {
+    // init meta-data
     useMeta({
       title: this.meta.Title,
       htmlAttrs: {lang: 'ru', amp: true},
@@ -91,7 +95,7 @@ export default {
 }
 
 nav {
-  max-width: 100vw;
+  max-width: 100%;
   padding: 10px 50px;
 }
 

@@ -1,5 +1,5 @@
 <template>
-  <section class="container container-header animate__animated animate__bounceIn animate__slow">
+  <section class="container container-header">
     <div class="wrapper shadow">
       <h1 class="header-title">{{ data?.Title }}</h1>
       <p class="header-body">{{ data?.Content }}</p>
@@ -11,6 +11,9 @@
 
 export default {
   name: "Header",
+  mounted() {
+
+  },
   data() {
     return {
       url: import.meta.env.VITE_APP_STRAPI_API_URL

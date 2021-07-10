@@ -1,6 +1,6 @@
 <template>
   <section class="container container-schedule">
-    <div class="wrapper shadow header animate__animated animate__bounceIn animate__slow"
+    <div class="wrapper shadow header"
          :style="{
             'background': `linear-gradient(90deg, rgba(255, 160, 51, 0.9), rgba(228, 35, 28, 0.6)),
                           url('${`${url}${schedule?.PreviewImage?.url}`}') center no-repeat`,
@@ -12,7 +12,7 @@
       <h1 class="header-title">{{ schedule?.Title }}</h1>
       <p class="header-subtitle">{{ schedule?.HeaderText }}</p>
     </div>
-    <div class="wrapper body content animate__animated animate__zoomInUp animate__slow">
+    <div class="wrapper body content">
       <div v-html="compiledMarkdown"></div>
     </div>
   </section>
@@ -20,10 +20,15 @@
 
 <script>
 import marked from "marked";
+import initPageAnimation from "../controllers/animation/commonPage";
 
 export default {
   name: "Schedule",
   mounted() {
+    // init animation
+    initPageAnimation()
+
+    //create and init data-label in tables
     let tables = document.getElementsByTagName('table');
     let length = tables.length;
 

@@ -3,7 +3,7 @@
   <Navbar v-if="!loader"/>
   <router-view v-if="!loader"/>
   <Footer v-if="!loader"/>
-  <div class="loaderBox" v-if="loader">
+  <div class="loaderBox" v-show="loader">
     <Loader/>
   </div>
 </template>
@@ -16,8 +16,7 @@ import Loader from "./components/Loader.vue";
 export default {
   name: 'App',
   components: {
-    Loader,
-    Navbar, Footer
+    Loader, Navbar, Footer
   },
   async mounted() {
     try {

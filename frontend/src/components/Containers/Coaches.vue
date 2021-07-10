@@ -5,7 +5,7 @@
            v-for="item in coaches"
            v-bind:key="item['id']"
       >
-        <div class="card">
+        <div class="list-group-card">
           <figure class="card-front shadow">
             <img :src="getImgUrl(item?.['Card']?.['Image']?.['url'])" alt="coach"/>
           </figure>
@@ -60,7 +60,7 @@ export default {
   transform-style: preserve-3d;
 }
 
-.card-container .card {
+.card-container .list-group-card {
   width: 267px;
   height: 400px;
   transform-style: preserve-3d;
@@ -69,7 +69,7 @@ export default {
   line-height: 1;
 }
 
-.card-container .card figure {
+.card-container .list-group-card figure {
   position: absolute;
   width: 267px;
   height: 400px;
@@ -79,7 +79,7 @@ export default {
   border-radius: 10px;
 }
 
-.card-container:hover .card, .card-container.hover .card {
+.card-container:hover .list-group-card, .card-container.hover .list-group-card {
   transform: rotateY(180deg);
 }
 

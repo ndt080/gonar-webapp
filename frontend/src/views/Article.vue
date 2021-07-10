@@ -1,7 +1,7 @@
 <template>
   <section class="container container-article">
     <article class="wrapper content">
-      <div class="article-header  animate__animated animate__bounceIn animate__slow">
+      <div class="article-header">
         <p class="article-date">{{ convertDate(article?.published_at) }}</p>
         <h1 class="article-title">{{ article?.Title.toUpperCase() }}</h1>
         <div class="article-preview"
@@ -14,16 +14,21 @@
               }">
         </div>
       </div>
-      <div class="article-body animate__animated animate__zoomInUp animate__slow" v-html="compiledMarkdown"></div>
+      <div class="article-body" v-html="compiledMarkdown"></div>
     </article>
   </section>
 </template>
 
 <script>
 import marked from "marked";
+import initArticlePageAnimation from "../controllers/animation/articlePage";
 
 export default {
   name: "Article",
+  mounted() {
+    // init animation
+    initArticlePageAnimation()
+  },
   data() {
     return {
       id: this.$route.params.id,
