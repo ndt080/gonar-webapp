@@ -4,7 +4,7 @@
       <div class="box" v-for="item in partners"
            v-bind:key="item['id']"
       >
-        <a :href="item?.['Card']?.['Link'] || '#'" target="_blank">
+        <a :href="item?.['Card']?.['Link'] || '#'" target="_blank" rel="noreferrer">
           <img class="box-img" :src="getImgUrl(item?.['Card']?.['Logo']?.['url'])" alt="partner"/>
           <h3 class="box-title">{{item?.['Card']?.['Title']}}</h3>
         </a>

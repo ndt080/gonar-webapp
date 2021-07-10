@@ -1,11 +1,15 @@
 <template>
   <Header/>
+  <div class="section-header section-header--news">
+    <span>НОВОСТИ</span>
+    <a href="/articles" class="news-btn">Подробнее</a>
+  </div>
   <News/>
   <div class="section-header">ПРЕПОДАВАТЕЛЬСКИЙ СОСТАВ</div>
   <Coaches/>
   <div class="section-header" id="lightbox">ФОТОГАЛЕРЕЯ</div>
   <div class="container container-lightbox">
-    <Lightbox :cells="4" :items="getImages"/>
+    <Lightbox :cells="3" :items="getImages"/>
   </div>
   <div class="section-header">НАШИ ПАРТНЁРЫ</div>
   <Partners/>
@@ -21,11 +25,13 @@ import Header from "../components/Containers/Header.vue";
 import Coaches from "../components/Containers/Coaches.vue";
 import Contacts from "../components/Containers/Contacts.vue";
 import Partners from "../components/Containers/Partners.vue";
+import initHomePageAnimation from "../controllers/animation/homePage";
 
 export default {
   name: "Home",
-  metaInfo: {
-    title: 'Default Title',
+  mounted() {
+    // init animation
+    initHomePageAnimation()
   },
   data() {
     return {
@@ -48,26 +54,46 @@ export default {
 </script>
 
 <style>
-.container {
-  padding: 0 50px 50px 50px;
-}
-
 .section-header {
   text-align: center;
-  width: 100%;
+  max-width: 100%;
+  padding: 0 50px 20px 50px;
   color: #0a0a0a;
-  font-size: 2em;
+  font-size: 2.1rem;
   font-weight: 700;
-  padding-bottom: 20px;
+}
+
+.section-header--news {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+.section-header--news .news-btn {
+  text-decoration: none;
+  white-space: nowrap;
+  border: none;
+  border-radius: 4px;
+  font-family: 'Bitter', serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  padding: 8px 16px;
+  margin-left: 20px;
+  color: black;
+  background: #e06a55;
+  transition-duration: .5s;
+}
+
+.section-header--news .news-btn:hover {
+  cursor: pointer;
+  background: #fff;
+  color: #e06a55;
 }
 
 @media (max-width: 968px) {
-  .container {
-    padding: 0 20px 50px 20px;
-  }
-
   .section-header {
-    font-size: 1.6em;
+    font-size: 1.5rem !important;
+    padding: 0 20px 20px 20px;
   }
 }
 

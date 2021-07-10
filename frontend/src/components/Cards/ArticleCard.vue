@@ -1,6 +1,5 @@
-<template >
-  <div class="card card-news animate__animated animate__slideInLeft"
-       :style="{animationDelay: `${500+length*i*100}ms`}"
+<template>
+  <div class="list-group-card card-news"
        v-if="i < length && i >= length-8">
     <div class="card-header">
       <p>{{ convertDate(article?.published_at) }}</p>
@@ -14,9 +13,10 @@
     <div class="card-body">
       <p>{{ article?.Description }}</p>
     </div>
-    <router-link :to="{ path: '/article/' + article?.id }">
+    <a :href="`/articles/${article?.id}`">
+      <!--    <router-link :to="{ path: '/article/' + article?.id }">-->
       <button class="card-btn" type="button" aria-label="more details">Подробнее</button>
-    </router-link>
+    </a>
   </div>
 </template>
 
@@ -53,18 +53,18 @@ export default {
     getImgUrl() {
       let filename = this.article?.Image?.url
       return `${this.url}${filename}`
-    }
-
+    },
   }
 }
 </script>
 
 <style scoped>
-.card {
+.list-group-card {
   display: flex;
   position: relative;
   flex-direction: column;
-  height: 30rem;
+  height: 450px;
+  min-width: 300px;
   width: 300px;
   padding: 1.5rem;
   margin: 0 auto;
@@ -78,20 +78,21 @@ export default {
   transition: .2s;
 }
 
-.card:hover {
+.list-group-card:hover {
   transform: translateY(-1rem);
 }
 
-.card:hover ~ .card {
-  transform: translateX(130px);
+.list-group-card:hover ~ .list-group-card {
+  transform: translateX(200px);
 }
 
-.card:not(:first-child) {
-  margin-left: -130px;
+.list-group-card:not(:first-child) {
+  margin-left: -200px;
 }
 
 .card-header {
   margin-bottom: auto;
+  text-overflow: ellipsis;
 }
 
 .card-header img {
@@ -121,13 +122,13 @@ export default {
 
 .card-header h2:hover {
   opacity: 0.5;
-
 }
 
 .card-body {
   height: 100%;
   width: 100%;
   white-space: normal;
+  text-overflow: ellipsis;
   overflow: hidden;
 }
 
@@ -144,6 +145,7 @@ export default {
   padding: 8px 16px;
   color: black;
   background: #e06a55;
+  transition-duration: .5s;
 }
 
 .card-btn:hover {

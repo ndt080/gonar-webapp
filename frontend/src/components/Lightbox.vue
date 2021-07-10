@@ -9,53 +9,54 @@
         >{{ items.length - cells }}+</span>
       </div>
     </div>
+    <teleport to="body">
+      <div class="lb-modal" v-if="index >= 0">
+        <button
+            class="btn-lightbox lb-modal-close"
+            @click="close">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg"
+               viewBox="0 0 16 16">
+            <path
+                d="M1.293 1.293a1 1 0 0 1 1.414 0L8 6.586l5.293-5.293a1 1 0 1 1 1.414 1.414L9.414 8l5.293 5.293a1 1 0 0 1-1.414 1.414L8 9.414l-5.293 5.293a1 1 0 0 1-1.414-1.414L6.586 8 1.293 2.707a1 1 0 0 1 0-1.414z"/>
+          </svg>
+        </button>
+        <button class="btn-lightbox lb-modal-prev" @click="prev">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-left"
+               viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+                  d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+          </svg>
+        </button>
+        <button class="btn-lightbox lb-modal-next" @click="next">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right"
+               viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+                  d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+          </svg>
+        </button>
 
-    <div class="lb-modal" v-if="index >= 0">
-      <button
-          class="btn-lightbox lb-modal-close"
-          @click="close">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg"
-             viewBox="0 0 16 16">
-          <path
-              d="M1.293 1.293a1 1 0 0 1 1.414 0L8 6.586l5.293-5.293a1 1 0 1 1 1.414 1.414L9.414 8l5.293 5.293a1 1 0 0 1-1.414 1.414L8 9.414l-5.293 5.293a1 1 0 0 1-1.414-1.414L6.586 8 1.293 2.707a1 1 0 0 1 0-1.414z"/>
-        </svg>
-      </button>
-      <button class="btn-lightbox lb-modal-prev" @click="prev">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-left"
-             viewBox="0 0 16 16">
-          <path fill-rule="evenodd"
-                d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
-        </svg>
-      </button>
-      <button class="btn-lightbox lb-modal-next" @click="next">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right"
-             viewBox="0 0 16 16">
-          <path fill-rule="evenodd"
-                d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
-        </svg>
-      </button>
-
-      <div class="lb-modal-img" @click="close">
-        <img :src="src" alt="img"/>
-        <div class="spinner spinner-dots-wave" v-if="loading">
+        <div class="lb-modal-img" @click="close">
+          <img :src="src" alt="img"/>
+          <div class="spinner spinner-dots-wave" v-if="loading">
 						<span class="badge badge-primary rounded-circle w-10 h-10">
               <i class="sr-only">&nbsp;</i>
             </span>
-          <span class="badge badge-primary rounded-circle w-10 h-10">
+            <span class="badge badge-primary rounded-circle w-10 h-10">
               <i class="sr-only">&nbsp;</i>
             </span>
-          <span class="badge badge-primary rounded-circle w-10 h-10">
+            <span class="badge badge-primary rounded-circle w-10 h-10">
               <i class="sr-only">&nbsp;</i>
             </span>
-          <span class="badge badge-primary rounded-circle w-10 h-10">
+            <span class="badge badge-primary rounded-circle w-10 h-10">
               <i class="sr-only">&nbsp;</i>
             </span>
-          <span class="badge badge-primary rounded-circle w-10 h-10">
+            <span class="badge badge-primary rounded-circle w-10 h-10">
               <i class="sr-only">&nbsp;</i>
             </span>
+          </div>
         </div>
       </div>
-    </div>
+    </teleport>
   </div>
 </template>
 
@@ -155,15 +156,18 @@ export default {
   border: none;
   padding: 5px;
 }
+
 .btn-lightbox svg {
   width: 15px;
   height: 15px;
 }
+
 .lb-grid {
   position: relative;
   display: block;
   max-height: 400px;
 }
+
 .lb-item {
   position: absolute;
   background-position: center center;
@@ -173,19 +177,24 @@ export default {
   border-right: solid 2px #fff;
   cursor: pointer;
 }
+
 .lb-grid-1 .lb-item {
   width: 100%;
   height: 100%;
 }
+
 .lb-grid-2 .lb-item, .lb-grid-3 .lb-item, .lb-grid-4 .lb-item, .lb-grid-5 .lb-item {
   width: 50%;
 }
+
 .lb-grid-2 .lb-item, .lb-grid-3 .lb-item:nth-child(1), .lb-grid-4 .lb-item:nth-child(1) {
   height: 100%;
 }
+
 .lb-grid-3 .lb-item:nth-child(2), .lb-grid-3 .lb-item:nth-child(3), .lb-grid-5 .lb-item:nth-child(1), .lb-grid-5 .lb-item:nth-child(2) {
   height: 50%;
 }
+
 .lb-item:last-child, .lb-grid-2 .lb-item:nth-child(2), .lb-grid-3 .lb-item:nth-child(2), .lb-grid-3 .lb-item:nth-child(3), .lb-grid-4 .lb-item:nth-child(2), .lb-grid-4 .lb-item:nth-child(3), .lb-grid-4 .lb-item:nth-child(4), .lb-grid-5 .lb-item:nth-child(3), .lb-grid-5 .lb-item:nth-child(4), .lb-grid-5 .lb-item:nth-child(5) {
   left: auto;
   right: 0;

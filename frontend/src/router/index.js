@@ -5,6 +5,7 @@ import Schedule from "./../views/Schedule.vue";
 import Druzhina from "./../views/Druzhina.vue";
 import Karate from "./../views/Karate.vue";
 import NotFound from "./../views/NotFound.vue";
+import Articles from "./../views/Articles.vue";
 import Article from "./../views/Article.vue";
 
 const routes = [
@@ -39,7 +40,12 @@ const routes = [
         component: NotFound,
     },
     {
-        path: "/article/:id",
+        path: "/articles",
+        name: "Articles",
+        component: Articles,
+    },
+    {
+        path: "/articles/:id",
         name: "Article",
         component: Article,
     },
