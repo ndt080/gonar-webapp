@@ -13,7 +13,7 @@
             '-o-background-size': 'cover'
           }"
             v-for="article in items"
-            :article="article"
+            @click="$router.push(`/articles/${article.id}`)"
         >
           <p>{{ convertDate(article?.['published_at']) }}</p>
           <h1 class="card-title">{{ article?.Title }}</h1>
@@ -134,6 +134,7 @@ export default {
   margin-bottom: 20px;
   font-size: 1.2em;
   line-height: 1.1;
+  cursor: pointer;
 }
 @media screen and (max-width: 1024px) {
   .container-articles .wrapper .list-group-card {
